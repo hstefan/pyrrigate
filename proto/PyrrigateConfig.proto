@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+message PyrrigateConf {
+    GoogleCalendarConf googleCalendar = 1;
+    repeated ControllerConf controller = 2;
+    repeated RoutineConf routine = 3;
+}
+
+message GoogleCalendarConf {
+    string secretFilePath = 1;
+    string credentialsPath = 2;
+    string calendarId = 3;
+}
+
+message ControllerConf {
+    enum ControllerType {
+        NULL = 0;
+        CONTROLLER_DIGITAL_PIN = 1;
+    }
+    string id = 1;
+    ControllerType type = 2;
+    int32 pinNumber = 3;
+}
+
+message RoutineConf {
+    string id = 1;
+    repeated RoutineActionConf action = 2;
+}
+
+message RoutineActionConf {
+    enum ActionType {
+        NULL = 0;
+        ACTION_ENABLE_TIMED = 1;
+    };
+    ActionType actionType = 1;
+    repeated string targetController = 2;
+    float enabledTime = 3;
+}
