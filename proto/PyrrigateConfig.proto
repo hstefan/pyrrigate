@@ -20,6 +20,7 @@ message ControllerConf {
     string id = 1;
     ControllerType type = 2;
     int32 pinNumber = 3;
+    bool reversed = 4;
 }
 
 message RoutineConf {

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='proto/PyrrigateConfig.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x1bproto/PyrrigateConfig.proto\"\x80\x01\n\rPyrrigateConf\x12+\n\x0egoogleCalendar\x18\x01 \x01(\x0b\x32\x13.GoogleCalendarConf\x12#\n\ncontroller\x18\x02 \x03(\x0b\x32\x0f.ControllerConf\x12\x1d\n\x07routine\x18\x03 \x03(\x0b\x32\x0c.RoutineConf\"Y\n\x12GoogleCalendarConf\x12\x16\n\x0esecretFilePath\x18\x01 \x01(\t\x12\x17\n\x0f\x63redentialsPath\x18\x02 \x01(\t\x12\x12\n\ncalendarId\x18\x03 \x01(\t\"\x95\x01\n\x0e\x43ontrollerConf\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x04type\x18\x02 \x01(\x0e\x32\x1e.ControllerConf.ControllerType\x12\x11\n\tpinNumber\x18\x03 \x01(\x05\"6\n\x0e\x43ontrollerType\x12\x08\n\x04NULL\x10\x00\x12\x1a\n\x16\x43ONTROLLER_DIGITAL_PIN\x10\x01\"=\n\x0bRoutineConf\x12\n\n\x02id\x18\x01 \x01(\t\x12\"\n\x06\x61\x63tion\x18\x02 \x03(\x0b\x32\x12.RoutineActionConf\"\xa6\x01\n\x11RoutineActionConf\x12\x31\n\nactionType\x18\x01 \x01(\x0e\x32\x1d.RoutineActionConf.ActionType\x12\x18\n\x10targetController\x18\x02 \x03(\t\x12\x13\n\x0b\x65nabledTime\x18\x03 \x01(\x02\"/\n\nActionType\x12\x08\n\x04NULL\x10\x00\x12\x17\n\x13\x41\x43TION_ENABLE_TIMED\x10\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x1bproto/PyrrigateConfig.proto\"\x80\x01\n\rPyrrigateConf\x12+\n\x0egoogleCalendar\x18\x01 \x01(\x0b\x32\x13.GoogleCalendarConf\x12#\n\ncontroller\x18\x02 \x03(\x0b\x32\x0f.ControllerConf\x12\x1d\n\x07routine\x18\x03 \x03(\x0b\x32\x0c.RoutineConf\"Y\n\x12GoogleCalendarConf\x12\x16\n\x0esecretFilePath\x18\x01 \x01(\t\x12\x17\n\x0f\x63redentialsPath\x18\x02 \x01(\t\x12\x12\n\ncalendarId\x18\x03 \x01(\t\"\xa7\x01\n\x0e\x43ontrollerConf\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x04type\x18\x02 \x01(\x0e\x32\x1e.ControllerConf.ControllerType\x12\x11\n\tpinNumber\x18\x03 \x01(\x05\x12\x10\n\x08reversed\x18\x04 \x01(\x08\"6\n\x0e\x43ontrollerType\x12\x08\n\x04NULL\x10\x00\x12\x1a\n\x16\x43ONTROLLER_DIGITAL_PIN\x10\x01\"=\n\x0bRoutineConf\x12\n\n\x02id\x18\x01 \x01(\t\x12\"\n\x06\x61\x63tion\x18\x02 \x03(\x0b\x32\x12.RoutineActionConf\"\xa6\x01\n\x11RoutineActionConf\x12\x31\n\nactionType\x18\x01 \x01(\x0e\x32\x1d.RoutineActionConf.ActionType\x12\x18\n\x10targetController\x18\x02 \x03(\t\x12\x13\n\x0b\x65nabledTime\x18\x03 \x01(\x02\"/\n\nActionType\x12\x08\n\x04NULL\x10\x00\x12\x17\n\x13\x41\x43TION_ENABLE_TIMED\x10\x01\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -42,8 +42,8 @@ _CONTROLLERCONF_CONTROLLERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=349,
-  serialized_end=403,
+  serialized_start=367,
+  serialized_end=421,
 )
 _sym_db.RegisterEnumDescriptor(_CONTROLLERCONF_CONTROLLERTYPE)
 
@@ -64,8 +64,8 @@ _ROUTINEACTIONCONF_ACTIONTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=588,
-  serialized_end=635,
+  serialized_start=606,
+  serialized_end=653,
 )
 _sym_db.RegisterEnumDescriptor(_ROUTINEACTIONCONF_ACTIONTYPE)
 
@@ -188,6 +188,13 @@ _CONTROLLERCONF = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='reversed', full_name='ControllerConf.reversed', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -202,7 +209,7 @@ _CONTROLLERCONF = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=254,
-  serialized_end=403,
+  serialized_end=421,
 )
 
 
@@ -239,8 +246,8 @@ _ROUTINECONF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=405,
-  serialized_end=466,
+  serialized_start=423,
+  serialized_end=484,
 )
 
 
@@ -285,8 +292,8 @@ _ROUTINEACTIONCONF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=469,
-  serialized_end=635,
+  serialized_start=487,
+  serialized_end=653,
 )
 
 _PYRRIGATECONF.fields_by_name['googleCalendar'].message_type = _GOOGLECALENDARCONF
