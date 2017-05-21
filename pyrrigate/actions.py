@@ -8,7 +8,7 @@ from typing import List, Dict
 
 
 from pyrrigate.PyrrigateConfig_pb2 import RoutineActionConf
-from pyrrigate.contollers import Controller
+from pyrrigate.controllers import Controller
 
 
 class RoutineAction(metaclass=abc.ABCMeta):

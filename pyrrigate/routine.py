@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time
-from typing import Dict, List
-from datetime import datetime, timedelta
-
 import logging
-
-from pyrrigate.settings import get_default_config
-from pyrrigate.schedule import RoutineSchedule
-from pyrrigate.PyrrigateConfig_pb2 import ControllerConf, RoutineConf
-from pyrrigate.contollers import Controller
+import time
+from datetime import timedelta
+from typing import Dict, List
+from pyrrigate.PyrrigateConfig_pb2 import RoutineConf
 from pyrrigate.actions import RoutineAction
+from pyrrigate.controllers import Controller
+from pyrrigate.schedule import RoutineSchedule
+from pyrrigate.settings import get_default_config
 
 
 class Routine(object):
@@ -41,6 +39,8 @@ class RoutineController(object):
 
     def run(self):
         """Loop for fetching scheduled events and triggering unique executions."""
+        import pyrrigate.util  # FIXME
+
         refresh_time = timedelta(seconds=10.0)
         while True:
             events = [e for e in self.schedule.refresh_next_events(refresh_time)
@@ -53,8 +53,7 @@ class RoutineController(object):
 
             # builds the necessary objects from configuration files
             config = get_default_config()
-            controllers = {c.id: Controller.from_config(c) for c in config.controller}
-            routines = {r.id: Routine.from_config(r, controllers) for r in config.routine}
+            routines = pyrrigate.util.make_routine_dictionary(config)
 
             for event in events:
                 self.ran_events.add(event.event_id)

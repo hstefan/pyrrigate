@@ -3,11 +3,13 @@
 
 """Classes and functions that provide ways to access user configurations for the application."""
 
-import os.path
-from typing import List, Optional
 import logging
-from .PyrrigateConfig_pb2 import PyrrigateConf
+import os.path
+from typing import Dict, List, Optional
+
 import google.protobuf.text_format as tpb
+
+from pyrrigate.PyrrigateConfig_pb2 import PyrrigateConf
 
 
 DEFAULT_CONFIG_PATHS = [os.path.expanduser('~/.pyrrigate.tpb'),

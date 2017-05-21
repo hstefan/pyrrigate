@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import abc
-import wiringpi
+import logging
 from pyrrigate.PyrrigateConfig_pb2 import ControllerConf
+from pyrrigate.gpio import digital_write
 
 
 class Controller(metaclass=abc.ABCMeta):
@@ -19,23 +20,23 @@ class Controller(metaclass=abc.ABCMeta):
 
     @abc.abstractclassmethod
     def activate(self):
-        pass
+        raise NotImplementedError
 
     @abc.abstractclassmethod
     def deactivate(self):
-        pass
+        raise NotImplementedError
 
 
 class DigitalPinController(Controller):
-    def __init__(self, controller_id: str, pin: int, reverse: bool = False):
+    def __init__(self, controller_id: str, pin: int, reverse: bool=False):
         super().__init__(controller_id)
         self.pin = pin
         self.reverse = reverse
 
     def activate(self):
-        active_value = wiringpi.LOW if self.reverse else wiringpi.HIGH
-        wiringpi.digitalWrite(active_value)
+        logging.info('Activating controller "%s".')
+        digital_write(self.pin, not self.reverse)
 
     def deactivate(self):
-        inactive_value = wiringpi.HIGH if self.reverse else wiringpi.LOW
-        wiringpi.digitalWrite(inactive_value)
+        logging.info('Deactivating controller "%s".')
+        digital_write(self.pin, self.reverse)
