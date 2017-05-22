@@ -26,6 +26,7 @@ class Routine(object):
 
     def execute(self):
         """Runs all actions associated with the routine."""
+        logging.info('Starting routine "%s".', self.routine_id)
         for action in self.actions:
             action.execute()
 
@@ -33,9 +34,10 @@ class Routine(object):
 class RoutineController(object):
     """Dispatches the execution of routines based on a routine schedule."""
 
-    def __init__(self, schedule: RoutineSchedule):
+    def __init__(self, schedule: RoutineSchedule, dummy_gpio=False):
         self.schedule = schedule
         self.ran_events = set()
+        self.dummy_gpio = dummy_gpio
 
     def run(self):
         """Loop for fetching scheduled events and triggering unique executions."""
@@ -53,12 +55,12 @@ class RoutineController(object):
 
             # builds the necessary objects from configuration files
             config = get_default_config()
-            routines = pyrrigate.util.make_routine_dictionary(config)
+            controllers = pyrrigate.util.make_controller_dictionary(config, self.dummy_gpio)
+            routines = pyrrigate.util.make_routine_dictionary(config, controllers)
 
             for event in events:
                 self.ran_events.add(event.event_id)
-
-                routine = routines.get(event.name)
+                routine = routines.get(event.name, None)
                 if routine is None:
                     logging.error("Ignoring unconfigured routine received from schedule.")
                     continue

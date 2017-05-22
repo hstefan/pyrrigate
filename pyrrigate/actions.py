@@ -58,5 +58,5 @@ class TimedEnableAction(RoutineAction):
             time.sleep(self.enabled_time)
             return True
         except Exception as e:
-            logging.exception('Exception caught during execution of action.', e)
+            logging.exception('Exception caught during execution of action.')
             return False

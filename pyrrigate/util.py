@@ -10,9 +10,9 @@ import pyrrigate.routine
 ControllerDict = Dict[str, pyrrigate.controllers.Controller]
 RoutineDict = Dict[str, pyrrigate.routine.Routine]
 
-def make_controller_dictionary(config: PyrrigateConf) -> ControllerDict:
+def make_controller_dictionary(config: PyrrigateConf, dummy: bool=False) -> ControllerDict:
     """Makes a dictionary associating controller ids to their concrete types."""
-    return {c.id: pyrrigate.controllers.Controller.from_config(c)
+    return {c.id: pyrrigate.controllers.Controller.from_config(c, dummy)
             for c in config.controller}
 
 
