@@ -9,10 +9,10 @@ from dateutil.parser import parse as date_parse
 from pyrrigate.gcall import GoogleCalendarFetcher
 
 
-class RoutineEvent(NamedTuple):
-    event_id: str
-    name: str
-    start_utc: datetime
+RoutineEvent = NamedTuple('RoutineEvent', [
+    ('event_id', str),
+    ('name', str),
+    ('start_utc', datetime)])
 
 
 class RoutineSchedule(object):
