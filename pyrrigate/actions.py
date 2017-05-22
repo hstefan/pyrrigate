@@ -56,6 +56,8 @@ class TimedEnableAction(RoutineAction):
             for controller in self.target_controllers:
                 controller.activate()
             time.sleep(self.enabled_time)
+            for controller in self.target_controllers:
+                controller.deactivate()
             return True
         except Exception as e:
             logging.exception('Exception caught during execution of action.')
