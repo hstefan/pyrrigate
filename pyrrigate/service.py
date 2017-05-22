@@ -52,7 +52,7 @@ def main():
         gcal_creds = get_google_calendar_credentials(config.googleCalendar)
         gcal = GoogleCalendarFetcher(config.googleCalendar, gcal_creds)
         schedule = RoutineSchedule(gcal)
-        routine_controller = RoutineController(schedule)
+        routine_controller = RoutineController(schedule, args.use_dummy_gpio)
         routine_controller.run()
     except:  # if anything goes wrong, deactivate all controllers
         reset_controllers(args.use_dummy_gpio)
