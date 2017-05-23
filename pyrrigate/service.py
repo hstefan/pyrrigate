@@ -3,6 +3,7 @@
 
 import logging
 import argparse
+import oauth2client.tools
 from pyrrigate.gcall import GoogleCalendarFetcher, get_google_calendar_credentials
 from pyrrigate.routine import RoutineController
 from pyrrigate.schedule import RoutineSchedule
@@ -30,12 +31,13 @@ def init_gpio(dummy: bool=False):
 
 def parse_args():
     """Parses command line arguments."""
-    parser = argparse.ArgumentParser()
+    parser = oauth2client.tools.argparser
     parser.add_argument('--use-dummy-gpio', default=False, action='store_true')
     return parser.parse_args()
 
 
 def main():
+    args = parse_args()
     # set up loggers
     logging.basicConfig(level=logging.INFO)
     googleapi_logger = logging.getLogger('googleapiclient')
@@ -43,7 +45,6 @@ def main():
         googleapi_logger.setLevel(logging.ERROR)
 
     logging.info('Initializing Pyrrigate.')
-    args = parse_args()
 
     init_gpio(args.use_dummy_gpio)
     config = get_default_config()
