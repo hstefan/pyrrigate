@@ -53,7 +53,7 @@ class DigitalPinController(Controller):
         if self.dummy:
             logging.info('digital_write(%d, %r)', self.pin, value)
         else:
-            wiringpi.digitalWrite(self.pin, wiringpi.LOW if value else wiringpi.HIGH)
+            wiringpi.digitalWrite(self.pin, wiringpi.HIGH if value else wiringpi.LOW)
 
     def configure(self):
         if self.dummy:
