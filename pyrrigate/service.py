@@ -16,6 +16,7 @@ def reset_controllers(dummy: bool):
     config = get_default_config()
     controllers = make_controller_dictionary(config, dummy)
     for controller in controllers.values():
+        controller.configure()
         controller.deactivate()
 
 

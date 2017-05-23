@@ -29,6 +29,10 @@ class Controller(metaclass=abc.ABCMeta):
     def deactivate(self):
         raise NotImplementedError
 
+    @abc.abstractclassmethod
+    def configure(self):
+        raise NotImplementedError
+
 
 class DigitalPinController(Controller):
     def __init__(self, controller_id: str, pin: int, reverse: bool=False, dummy=False):
@@ -50,3 +54,9 @@ class DigitalPinController(Controller):
             logging.info('digital_write(%d, %r)', self.pin, value)
         else:
             wiringpi.digitalWrite(self.pin, wiringpi.LOW if value else wiringpi.HIGH)
+
+    def configure(self):
+        if self.dummy:
+            logging.info('pin_mode(%d, OUTPUT)', self.pin)
+        else:
+            wiringpi.pinMode(self.pin, wiringpi.OUTPUT)
