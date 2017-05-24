@@ -1,0 +1,13 @@
+[Unit]
+Description=Pyrrigate
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/home/pi/pyrrigate/venv/bin/python /home/pi/pyrrigate/pyrrigate/service.py
+User=root
+WorkingDirectory=/home/pi/pyrrigate/
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
